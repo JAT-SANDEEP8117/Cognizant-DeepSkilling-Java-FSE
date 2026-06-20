@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header id="mainHeader">
+
+        <h1 style="color:red;">
+            Local Community Event Portal
+        </h1>
+
+        <p>
+            Bringing Residents and Community Events Together
+        </p>
+
+    </header>
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <ul>
+
+            <li><a href="#home">Home</a></li>
+
+            <li><a href="#events">Events</a></li>
+
+            <li><a href="#register">Register</a></li>
+
+            <li><a href="#gallery">Gallery</a></li>
+
+            <li><a href="#contact">Contact</a></li>
+
+            <li><a href="help.html" target="_blank">Help</a></li>
+
+        </ul>
+
+    </nav>
+
+    <!-- Main -->
+
+    <main>
+
+        <!-- Home Section -->
+
+        <section id="home">
+
+            <div id="welcomeBanner">
+                Welcome to the Community Event Portal
+            </div>
+
+            <p class="description">
+
+                Stay updated with local workshops,
+                cultural programs, sports activities,
+                awareness campaigns, and social events.
+
+            </p>
+
+            <p>
+
+                <span style="color:red;font-weight:bold;">
+                    Special Offer: Free registration for the first 50 participants!
+                </span>
+
+            </p>
+
+        </section>
+
+        <hr>
+
+        <!-- Event Filter -->
+
+        <section>
+
+            <h2>Search and Filter Events</h2>
+
+            <input type="text"
+                id="searchBox"
+                placeholder="Search Event">
+
+            <br><br>
+
+            <select id="categoryFilter">
+
+                <option value="All">All</option>
+
+                <option value="Music">Music</option>
+
+                <option value="Workshop">Workshop</option>
+
+                <option value="Sports">Sports</option>
+
+                <option value="Seminar">Seminar</option>
+
+                <option value="Art">Art</option>
+
+            </select>
+
+        </section>
+
+        <hr>
+
+        <!-- Dynamic Events -->
+
+        <section id="events">
+
+            <h2>Upcoming Community Events</h2>
+
+            <div id="eventContainer"
+                class="eventsContainer">
+
+            </div>
+
+        </section>
+
+        <hr>
+
+        <!-- Gallery -->
+
+        <section id="gallery">
+
+            <h2>Community Event Gallery</h2>
+
+            <table>
+
+                <tr>
+
+                    <td>
+
+                        <img src="https://via.placeholder.com/200x120"
+                            alt="Music Event"
+                            title="Music Festival"
+                            class="gallery-img">
+
+                        <p>Music Festival</p>
+
+                    </td>
+
+                    <td>
+
+                        <img src="https://via.placeholder.com/200x120"
+                            alt="Workshop"
+                            title="Workshop"
+                            class="gallery-img">
+
+                        <p>Coding Workshop</p>
+
+                    </td>
+
+                    <td>
+
+                        <img src="https://via.placeholder.com/200x120"
+                            alt="Sports"
+                            title="Sports Meet"
+                            class="gallery-img">
+
+                        <p>Sports Meet</p>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        <img src="https://via.placeholder.com/200x120"
+                            alt="Seminar"
+                            title="Seminar"
+                            class="gallery-img">
+
+                        <p>Community Seminar</p>
+
+                    </td>
+
+                    <td>
+
+                        <img src="https://via.placeholder.com/200x120"
+                            alt="Expo"
+                            title="Expo"
+                            class="gallery-img">
+
+                        <p>Community Expo</p>
+
+                    </td>
+
+                    <td>
+
+                        <img src="https://via.placeholder.com/200x120"
+                            alt="Art"
+                            title="Art Exhibition"
+                            class="gallery-img">
+
+                        <p>Art Exhibition</p>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </section>
+
+        <hr>
+
+        <!-- Registration Form -->
+
+        <section id="register">
+
+            <h2>Event Registration</h2>
+
+            <form id="registrationForm">
+
+                <input type="text"
+                    name="name"
+                    placeholder="Enter Name"
+                    required
+                    autofocus>
+
+                <input type="email"
+                    name="email"
+                    placeholder="Enter Email"
+                    required>
+
+                <input type="text"
+                    id="phone"
+                    placeholder="Phone Number">
+
+                <input type="date"
+                    required>
+
+                <select name="event">
+
+                    <option>
+                        Music Festival
+                    </option>
+
+                    <option>
+                        Baking Workshop
+                    </option>
+
+                    <option>
+                        Sports Meet
+                    </option>
+
+                    <option>
+                        Community Seminar
+                    </option>
+
+                </select>
+
+                <textarea
+                    id="feedback"
+                    rows="5"
+                    placeholder="Enter Feedback"></textarea>
+
+                <p id="charCount">
+                    Characters: 0
+                </p>
+
+                <p id="errorBox"></p>
+
+                <button
+                    type="submit"
+                    id="registerBtn"
+                    class="cta-button">
+
+                    Register
+
+                </button>
+
+            </form>
+
+        </section>
+
+        <hr>
+
+        <!-- Video -->
+
+        <section>
+
+            <h2>Community Event Promo</h2>
+
+            <video width="500" controls>
+
+                <source src="sample.mp4"
+                    type="video/mp4">
+
+            </video>
+
+        </section>
+
+        <hr>
+
+        <!-- Geolocation -->
+
+        <section>
+
+            <h2>Nearby Events</h2>
+
+            <button class="cta-button"
+                onclick="findNearbyEvents()">
+
+                Find Nearby Events
+
+            </button>
+
+            <p id="locationResult"></p>
+
+        </section>
+
+        <hr>
+
+        <!-- Multi Column Article -->
+
+        <section>
+
+            <h2>Community Bulletin</h2>
+
+            <div class="newsArticle">
+
+                The city council invites all residents to
+                participate in upcoming community programs.
+                Events include cultural festivals, sports
+                competitions, environmental awareness drives,
+                health camps, educational workshops, and
+                volunteer initiatives. These activities
+                encourage collaboration, learning, and
+                community development. Residents can register
+                online, stay informed through notifications,
+                and engage actively in local programs that
+                improve quality of life.
+
+            </div>
+
+        </section>
+
+        <hr>
+
+        <!-- Contact -->
+
+        <section id="contact">
+
+            <h2>Contact Us</h2>
+
+            <p class="highlight">
+                Email: community@cityportal.com
+            </p>
+
+            <p>
+                Phone: +91 9876543210
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 Local Community Event Portal
+        </p>
+
+    </footer>
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>

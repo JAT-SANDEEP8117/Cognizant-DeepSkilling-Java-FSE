@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Universal Selector - Reset */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* Body Styles */
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f4f4f4 url("background.jpg") no-repeat center center fixed;
+    background-size:cover;
+    color:#333333;
+    line-height:1.6;
+    padding:20px;
+}
+
+/* Header Styles */
+#mainHeader{
+    background:linear-gradient(to right,#0066cc,#00bfff);
+    color:white;
+    text-align:center;
+    padding:20px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+/* Element Selector */
+h2{
+    color:#004080;
+    margin:15px 0;
+    text-align:center;
+}
+
+/* Grouping Selector */
+h3,p{
+    color:rgba(0,0,0,0.8);
+    margin:10px 0;
+}
+
+/* Navigation Styles */
+nav{
+    background:#222;
+    padding:15px;
+}
+
+nav ul{
+    list-style-type:none;
+    list-style-position:inside;
+}
+
+nav li{
+    display:inline-block;
+    margin-right:20px;
+    padding:5px;
+}
+
+/* Link Styling */
+a:link{
+    color:white;
+    text-decoration:none;
+}
+
+a:visited{
+    color:lightgray;
+}
+
+a:hover{
+    color:yellow;
+    text-decoration:underline;
+}
+
+a:active{
+    color:red;
+}
+
+/* Event Card */
+.eventCard{
+    background:rgba(255,255,255,0.9);
+    border:2px solid #cccccc;
+    padding:20px;
+    margin:20px 0;
+    border-radius:10px;
+}
+
+/* Highlight Class */
+.highlight{
+    background-color:yellow;
+    font-weight:bold;
+}
+
+/* Welcome Banner */
+#welcomeBanner{
+    background:#007bff;
+    color:white;
+    padding:15px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+/* Typography */
+.description{
+    font-size:18px;
+    font-style:italic;
+    font-weight:300;
+    text-align:justify;
+    letter-spacing:1px;
+    line-height:1.8;
+}
+
+/* Image Styling */
+.gallery-img{
+    width:200px;
+    height:120px;
+    border:3px solid black;
+    border-radius:5px;
+}
+
+/* Table Styling */
+table{
+    width:100%;
+    border-collapse:collapse;
+    text-align:center;
+    margin-top:20px;
+}
+
+th{
+    background:#007bff;
+    color:white;
+    padding:12px;
+    border:1px solid black;
+}
+
+td{
+    padding:12px;
+    border:1px solid black;
+}
+
+tr:nth-child(even){
+    background:#eeeeee;
+}
+
+/* Form Styling */
+form{
+    width:70%;
+    margin:auto;
+    padding:20px;
+    border:2px solid gray;
+    background:white;
+    border-radius:10px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    border:1px solid #cccccc;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    outline:3px solid orange;
+}
+
+/* CTA Button */
+.cta-button{
+    background-color:#007bff;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    cursor:pointer;
+}
+
+.cta-button:hover{
+    background-color:#0056b3;
+}
+
+/* Multi Column News Section */
+.newsArticle{
+    column-count:2;
+    column-gap:30px;
+    column-rule:1px solid gray;
+    margin-top:20px;
+    text-align:justify;
+}
+
+/* Hidden Example */
+.hiddenElement{
+    visibility:hidden;
+}
+
+.noneElement{
+    display:none;
+}
+
+/* Footer Styles */
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:20px;
+}
+
+/* Responsive Design */
+@media screen and (max-width:768px){
+
+    nav li{
+        display:block;
+        margin:10px 0;
+    }
+
+    .gallery-img{
+        width:100%;
+        height:auto;
+    }
+
+    h1,h2,h3{
+        font-size:90%;
+    }
+
+    form{
+        width:95%;
+    }
+
+    .eventCard{
+        width:100%;
+    }
+
+    body{
+        padding:2vw;
+    }
+}
+
+/* Flexbox Layout */
+.eventsContainer{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.eventsContainer .eventCard{
+    flex:1 1 300px;
+}

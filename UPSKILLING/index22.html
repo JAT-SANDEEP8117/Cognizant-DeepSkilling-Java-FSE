@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local Community Event Portal</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    margin:20px;
+}
+    
+nav{
+    background:#333;
+    padding:10px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-right:20px;
+}
+
+#welcomeBanner{
+    background:blue;
+    color:white;
+    padding:15px;
+    margin-top:10px;
+}
+
+.highlight{
+    background:yellow;
+    padding:3px;
+}
+
+.gallery-img{
+    width:200px;
+    height:120px;
+    border:3px solid black;
+}
+
+form{
+    width:500px;
+    padding:15px;
+    border:2px solid gray;
+    border-radius:10px;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:8px;
+    margin-bottom:10px;
+}
+
+button{
+    padding:10px;
+    cursor:pointer;
+}
+
+#feeDisplay{
+    color:green;
+    font-weight:bold;
+}
+
+#locationResult{
+    margin-top:10px;
+    color:blue;
+}
+</style>
+
+<script>
+
+window.onbeforeunload=function(){
+    return "You have unsaved form data.";
+};
+
+function validatePhone(){
+    let phone=document.getElementById("phone").value;
+
+    if(phone.length!=10 || isNaN(phone))
+    {
+        alert("Enter valid 10 digit phone number");
+    }
+}
+
+function showFee(){
+    let event=document.getElementById("eventType").value;
+    let fee="";
+
+    if(event=="Music")
+        fee="₹200";
+    else if(event=="Sports")
+        fee="₹300";
+    else if(event=="Workshop")
+        fee="₹500";
+    else
+        fee="₹100";
+
+    document.getElementById("feeDisplay").innerHTML="Event Fee : "+fee;
+
+    localStorage.setItem("preferredEvent",event);
+}
+
+function submitForm(){
+    document.getElementById("confirmation").value=
+    "Registration Submitted Successfully!";
+}
+
+function enlarge(img){
+    img.style.width="350px";
+    img.style.height="220px";
+}
+
+function countChars(){
+    let text=document.getElementById("feedback").value;
+    document.getElementById("charCount").innerHTML=
+    "Characters : "+text.length;
+}
+
+function videoReady(){
+    document.getElementById("videoMsg").innerHTML=
+    "Video ready to play";
+}
+
+function loadPreference(){
+    let saved=localStorage.getItem("preferredEvent");
+
+    if(saved)
+    {
+        document.getElementById("eventType").value=saved;
+        showFee();
+    }
+}
+
+function clearStorage(){
+    localStorage.clear();
+    sessionStorage.clear();
+    alert("Preferences Cleared");
+}
+
+function findLocation(){
+
+    if(navigator.geolocation)
+    {
+        navigator.geolocation.getCurrentPosition(
+            function(position){
+
+                document.getElementById("locationResult").innerHTML=
+                "Latitude : "+position.coords.latitude+
+                "<br>Longitude : "+position.coords.longitude;
+
+            },
+
+            function(error){
+
+                switch(error.code)
+                {
+                    case error.PERMISSION_DENIED:
+                        alert("Permission Denied");
+                        break;
+
+                    case error.TIMEOUT:
+                        alert("Request Timed Out");
+                        break;
+
+                    default:
+                        alert("Location Error");
+                }
+            },
+
+            {
+                enableHighAccuracy:true,
+                timeout:5000
+            }
+        );
+    }
+}
+
+window.onload=loadPreference;
+
+</script>
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#events">Events</a>
+    <a href="#contact">Contact</a>
+    <a href="help.html" target="_blank">Help</a>
+</nav>
+
+<!-- Main -->
+
+<section id="home">
+
+<div id="welcomeBanner">
+    Welcome to Community Event Portal
+</div>
+
+<p class="highlight">
+    Stay updated with city events.
+</p>
+
+<p>
+    <span style="color:red;font-weight:bold;">
+        Special Offer: Free registration for first 50 users!
+    </span>
+</p>
+
+</section>
+
+<hr>
+
+<section id="events">
+
+<h2>Community Event Gallery</h2>
+
+<table border="1">
+
+<tr>
+<td>
+<img src="https://via.placeholder.com/200x120"
+class="gallery-img"
+alt="Event1"
+title="Music Event"
+ondblclick="enlarge(this)">
+<br>
+<caption>Music Festival</caption>
+</td>
+
+<td>
+<img src="https://via.placeholder.com/200x120"
+class="gallery-img"
+alt="Event2"
+title="Sports Event"
+ondblclick="enlarge(this)">
+<br>
+<caption>Sports Meet</caption>
+</td>
+
+<td>
+<img src="https://via.placeholder.com/200x120"
+class="gallery-img"
+alt="Event3"
+title="Workshop"
+ondblclick="enlarge(this)">
+<br>
+<caption>Coding Workshop</caption>
+</td>
+</tr>
+
+<tr>
+<td>
+<img src="https://via.placeholder.com/200x120"
+class="gallery-img"
+alt="Event4"
+title="Seminar"
+ondblclick="enlarge(this)">
+<br>
+<caption>Seminar</caption>
+</td>
+
+<td>
+<img src="https://via.placeholder.com/200x120"
+class="gallery-img"
+alt="Event5"
+title="Expo"
+ondblclick="enlarge(this)">
+<br>
+<caption>Community Expo</caption>
+</td>
+
+<td>
+<img src="https://via.placeholder.com/200x120"
+class="gallery-img"
+alt="Event6"
+title="Cultural Event"
+ondblclick="enlarge(this)">
+<br>
+<caption>Cultural Night</caption>
+</td>
+</tr>
+
+</table>
+
+</section>
+
+<hr>
+
+<h2>Event Registration Form</h2>
+
+<form>
+
+<input type="text"
+placeholder="Enter Name"
+required
+autofocus>
+
+<input type="email"
+placeholder="Enter Email"
+required>
+
+<input type="text"
+id="phone"
+placeholder="Enter Phone Number"
+onblur="validatePhone()">
+
+<input type="date"
+required>
+
+<select id="eventType" onchange="showFee()">
+<option value="">Select Event</option>
+<option value="Music">Music</option>
+<option value="Sports">Sports</option>
+<option value="Workshop">Workshop</option>
+<option value="Seminar">Seminar</option>
+</select>
+
+<p id="feeDisplay"></p>
+
+<textarea
+id="feedback"
+placeholder="Feedback"
+onkeyup="countChars()">
+</textarea>
+
+<p id="charCount">Characters : 0</p>
+
+<button type="button" onclick="submitForm()">
+Submit Registration
+</button>
+
+<br><br>
+
+<output id="confirmation"></output>
+
+</form>
+
+<hr>
+
+<h2>Event Promo Video</h2>
+
+<video width="400" controls oncanplay="videoReady()">
+    <source src="sample.mp4" type="video/mp4">
+</video>
+
+<p id="videoMsg"></p>
+
+<hr>
+
+<h2>Nearby Events</h2>
+
+<button onclick="findLocation()">
+Find Nearby Events
+</button>
+
+<div id="locationResult"></div>
+
+<hr>
+
+<button onclick="clearStorage()">
+Clear Preferences
+</button>
+
+<!-- Contact -->
+
+<section id="contact">
+<h2>Contact</h2>
+<p class="highlight">
+Email: community@cityportal.com
+</p>
+</section>
+
+<!-- Footer -->
+
+<footer>
+    <hr>
+    <p>&copy; 2026 Local Community Event Portal</p>
+</footer>
+
+</body>
+</html>
