@@ -1,0 +1,7 @@
+com\cognizant\jpa\JpaDemo.class
+com\cognizant\springjpa\SpringJpaDemo.class
+com\cognizant\springjpa\EmployeeService.class
+com\cognizant\Application.class
+com\cognizant\springjpa\EmployeeRepository.class
+com\cognizant\model\Employee.class
+com\cognizant\hibernate\HibernateDemo.class
